@@ -6,7 +6,7 @@ class StrayCatMngr{
 
     /// Returns all last seen locations of the StrayCats in the database.
     getAllCatLocation(){}
-    /// ??
+    /// Returns details for all specified stray cats 
     getCatInfo(){}
     /// Returns the unique ID of thhe corresponding stray cat, which is injured.
     getInjuredCatID(){}
