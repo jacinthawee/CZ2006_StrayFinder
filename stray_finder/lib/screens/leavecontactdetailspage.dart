@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../ui/ReportUI.dart';
-import '../classes/Injured.dart';
+import '../classes/InjuryMngr.dart';
 
 class LeaveContactDetailsPage extends StatefulWidget {
   const LeaveContactDetailsPage({Key? key}) : super(key: key);
@@ -185,7 +185,7 @@ class _LeaveContactDetailsPageState extends State<LeaveContactDetailsPage> {
               ),
               child:
               (submit == true) ? IconButton(onPressed:  () {
-                Injured(id).addInjury(desc, images, contactPasserby, newName, name, lastSeen);
+                InjuryMngr.addInjury(id, desc, images, contactPasserby, newName, name, lastSeen);
                 ReportUI.goThankYouForReporting(context);
               }, icon:
               Icon(Icons.send, color: Colors.white),

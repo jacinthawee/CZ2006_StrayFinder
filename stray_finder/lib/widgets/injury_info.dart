@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:custom_info_window/custom_info_window.dart';
 import 'package:flutter/material.dart';
-import '../ui/cat_map_ui.dart';
-import '../ui/vet_ui.dart';
+
+import '../ui/map_ui.dart';
 
 class InjuryInfo extends StatelessWidget{
   Map<String, dynamic> _cat;
@@ -35,12 +35,6 @@ class InjuryInfo extends StatelessWidget{
               )
             ],
           ),
-          // Row(
-          //   children: [
-          //     Text("Condition: ", style: Theme.of(context).textTheme.bodyText1,),
-          //     Text(_cat['injury_desc'], style: Theme.of(context).textTheme.bodyText2,),
-          //   ],
-          // ),
           Row(
             children: [
               Text("Passerby Name: ", style: Theme.of(context).textTheme.bodyText1,),
@@ -62,7 +56,27 @@ class InjuryInfo extends StatelessWidget{
             onPressed: () {
               GeoPoint pos = _cat['lastSeen'];
               String dest = pos.latitude.toString() + " " + pos.longitude.toString();
-              CatMapUI.openMap(dest);
+              try {
+                MapUI.openMap(dest);
+              } catch (e) {
+                showDialog(
+                  context: context,
+                  builder: (ctx) {
+                    return AlertDialog(
+                      title: Text("Error"),
+                      content: Text(
+                        "Could not launch Google Maps. Please make sure Google Maps is installed and is connected to Internet"),
+                      actions: [
+                        TextButton(
+                          onPressed: ()=>Navigator.pop(ctx),
+                          child: Text("OK",
+                              style: TextStyle(color: Color(0xff754E46))),
+                        )
+                      ],
+                    );
+                  },
+                );
+              }
             }, 
             icon: Icon(Icons.directions_rounded, color: Theme.of(context).colorScheme.secondary, size:20), 
             label: const Text("Open Google Maps", style: TextStyle(color: Color(0xFF754E46),fontSize:12,fontWeight: FontWeight.bold)),

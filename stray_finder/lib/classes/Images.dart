@@ -1,9 +1,6 @@
-// import 'dart:ui';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:path/path.dart' as path;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:io';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
 class Images {
