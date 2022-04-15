@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import '../classes/Injured.dart';
-import '../classes/stray_cat.dart';
+import '../classes/InjuryMngr.dart';
 import '../screens/cat_map.dart';
 class InjuredCatCard extends StatelessWidget{
   Map<String, dynamic> cat;
-  // Function remove;
   PageController pageViewController = PageController(initialPage: 0);
   InjuredCatCard(this.cat);
 
@@ -177,7 +175,7 @@ class InjuredCatCard extends StatelessWidget{
                               ),
                               // onPressed: () => remove(cat.id),
                               onPressed: (){
-                                Injured(cat['cat_id']).deleteInjury();
+                                InjuryMngr.deleteInjury(cat['cat_id']);
                               },
                             ),
                           ),

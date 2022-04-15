@@ -1,25 +1,14 @@
-// import 'package:cloud_firestore/cloud_firestore.dart';
+import 'dart:typed_data';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:custom_info_window/custom_info_window.dart';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:stray_finder/managers/cat_manager.dart';
+import 'package:stray_finder/ui/map_ui.dart';
 import 'package:stray_finder/widgets/cat_legend.dart';
-import '../ui/cat_map_ui.dart';
-import '../ui/vet_ui.dart';
 import '../widgets/cat_info.dart';
 import 'dart:async';
-import 'dart:io';
-import 'dart:typed_data' show ByteData, Uint8List;
-import 'dart:convert' show utf8;
-import 'dart:ui' as ui;
-import 'package:http/http.dart' as http;
-// import 'package:image_picker/image_picker.dart';
-// import 'package:flutter/services.dart';
-// import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+/// A screen to show all cats on Google Maps
 class CatMapScreen extends StatefulWidget {
   const CatMapScreen({ Key? key }) : super(key: key);
 
@@ -30,32 +19,20 @@ class CatMapScreen extends StatefulWidget {
 class _CatMapScreenState extends State<CatMapScreen> {
   ValueNotifier<bool> isDialOpen = ValueNotifier(false);
   final CustomInfoWindowController _controller = CustomInfoWindowController();
-  // late Future<bool> _hasCatData;
-  Set<Marker> _markers = {};
-  // late BitmapDescriptor myIcon;
-  late Future<List<Uint8List>> _catMarker;
+  late Future<Uint8List> _normalCatMarker;
+  late Future<Uint8List> _injuredCatMarker;
 
   @override
   void initState() {
     super.initState();
-    _catMarker = CatMapUI.getCatMarker();
+    _normalCatMarker = MapUI.getMarkerFromAsset('assets/images/cat_marker0.png');
+    _injuredCatMarker = MapUI.getMarkerFromAsset('assets/images/cat_marker1.png');
   }
   @override
   void dispose() {
     super.dispose();
     _controller.dispose();
   }
-  // Future<Uint8List> getCatMarker() async {
-  //   // cat_marker = await BitmapDescriptor.fromAssetImage(
-  //   //   const ImageConfiguration(size: Size(48, 48)), 
-  //   //   'assets/images/cat_marker.png');
-  //   ByteData data = await rootBundle.load('assets/images/cat_marker.png');
-  //   ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(), targetWidth: 100);
-  //   ui.FrameInfo fi = await codec.getNextFrame();
-  //   return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!.buffer.asUint8List();
-  //   // var response = await Dio().get<List<int>>(url, options: Options(responseType: ResponseType.bytes));
-  //   // ui.Codec codec = await ui.instantiateImageCodec(Uint8List.fromList(response.data!), targetWidth: width);
-  // }
 
   Set<Marker> _createMarkers(List<dynamic> cats, List<Uint8List> catMarker){
     Set<Marker> marker = {};
@@ -80,7 +57,7 @@ class _CatMapScreenState extends State<CatMapScreen> {
     late List<Uint8List> catMarker;
     late List<Map<String, dynamic>> cats;
     return FutureBuilder(
-      future: _catMarker,
+      future: Future.wait([_normalCatMarker, _injuredCatMarker]),
       builder: (BuildContext context, AsyncSnapshot<List<Uint8List>> snapshotF){
         if (snapshotF.hasData){
           catMarker = snapshotF.data!;

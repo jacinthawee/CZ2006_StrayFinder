@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../ui/ReportUI.dart';
-import '../classes/Injured.dart';
+import '../classes/InjuryMngr.dart';
 
 class BringCatToVetPage extends StatelessWidget{
 
@@ -42,7 +42,7 @@ class BringCatToVetPage extends StatelessWidget{
                   child: IconButton(icon: Icon(Icons.cancel, color: Color(0xFFC82626), size: 50,), onPressed: (){
                     String passerbyContact = 'N/A';
                     String passerbyName = 'N/A';
-                    Injured(id).addInjury(desc, images, passerbyContact, passerbyName, name, lastSeen);
+                    InjuryMngr.addInjury(id, desc, images, passerbyContact, passerbyName, name, lastSeen);
                   ReportUI.goThankYouForReporting(context);
                   },),
                 ),

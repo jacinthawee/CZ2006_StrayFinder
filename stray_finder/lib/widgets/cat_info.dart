@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:custom_info_window/custom_info_window.dart';
 import 'package:flutter/material.dart';
-import '../ui/cat_map_ui.dart';
-import '../ui/vet_ui.dart';
+
+import '../ui/map_ui.dart';
 
 class CatInfo extends StatelessWidget {
   Map<String, dynamic> _cat;
@@ -39,20 +39,6 @@ class CatInfo extends StatelessWidget {
             width: 100,
             child: Image.network(_cat['img_URL'])
           ),
-          // Row(
-          //   children: [
-          //     Image.network(_cat['cat_img']),
-          //     Text("Breed: ", style: Theme.of(context).textTheme.bodyText1,),
-          //     Text(_cat['cat_breed'], style: Theme.of(context).textTheme.bodyText2,),
-          //   ],
-          // ),
-          // Row(
-          //   crossAxisAlignment: CrossAxisAlignment.start,
-          //   children: [
-          //     Text("Injured: ", style: Theme.of(context).textTheme.bodyText1,),
-          //     Flexible(child: Text('${_cat['is_injured']}', style: Theme.of(context).textTheme.bodyText2,)),
-          //   ],
-          // ),
           TextButton.icon(
             style: TextButton.styleFrom(
               padding: EdgeInsets.all(2),
@@ -62,7 +48,28 @@ class CatInfo extends StatelessWidget {
             onPressed: () {
               GeoPoint pos = _cat['lastSeenLoc'];
               String dest = pos.latitude.toString() + " " + pos.longitude.toString();
-              CatMapUI.openMap(dest);
+              // MapUI.openMap(dest);
+              try {
+                MapUI.openMap(dest);
+              } catch (e) {
+                showDialog(
+                  context: context,
+                  builder: (ctx) {
+                    return AlertDialog(
+                      title: Text("Error"),
+                      content: Text(
+                        "Could not launch Google Maps. Please make sure Google Maps is installed and is connected to Internet"),
+                      actions: [
+                        TextButton(
+                          onPressed: ()=>Navigator.pop(ctx),
+                          child: Text("OK",
+                              style: TextStyle(color: Color(0xff754E46))),
+                        )
+                      ],
+                    );
+                  },
+                );
+              }
             },
             icon: Icon(Icons.directions_rounded, color: Theme.of(context).colorScheme.secondary, size:20), 
             label: const Text("Open Google Maps", style: TextStyle(color: Color(0xFF754E46),fontSize:12,fontWeight: FontWeight.bold)),
