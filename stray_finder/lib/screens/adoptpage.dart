@@ -14,7 +14,7 @@ class AdoptPage extends StatefulWidget {
 class _AdoptState extends State<AdoptPage> {
 
 
-  var adoptionCentres = AdoptMngr.adoptionCentres;
+  var adoptionCentres = AdoptMngr.getAdoptionCentres();
   @override
   Widget build(BuildContext context) {
     return  ListView.builder(
