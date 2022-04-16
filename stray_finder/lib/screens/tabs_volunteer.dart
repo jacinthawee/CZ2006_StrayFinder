@@ -59,7 +59,7 @@ class _TabsVolunteerState extends State<TabsVolunteer> {
       ),
       // body: _pages[_selectedPageIndex]['page'] as Widget,
       body: IndexedStack(
-        children: [NoticeboardWidget(), CatMapScreen(), VetScreen()],
+        children: [NoticeboardScreen(), CatMapScreen(), VetScreen()],
         index: _selectedPageIndex,
       ),
       bottomNavigationBar: BottomNavigationBar(

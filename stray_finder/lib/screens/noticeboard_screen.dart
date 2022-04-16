@@ -2,12 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../widgets/injured_cat.dart';
 
-class NoticeboardWidget extends StatefulWidget {
+class NoticeboardScreen extends StatefulWidget {
   @override
-  _NoticeboardWidgetState createState() => _NoticeboardWidgetState();
+  _NoticeboardScreenState createState() => _NoticeboardScreenState();
 }
 
-class _NoticeboardWidgetState extends State<NoticeboardWidget> {
+class _NoticeboardScreenState extends State<NoticeboardScreen> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(

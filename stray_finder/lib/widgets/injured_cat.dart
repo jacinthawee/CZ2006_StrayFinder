@@ -3,20 +3,20 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../managers/InjuryMngr.dart';
 import '../screens/cat_map.dart';
 class InjuredCatCard extends StatelessWidget{
-  Map<String, dynamic> cat;
-  PageController pageViewController = PageController(initialPage: 0);
-  InjuredCatCard(this.cat);
+  Map<String, dynamic> _cat;
+  PageController _pageViewController = PageController(initialPage: 0);
+  InjuredCatCard(this._cat);
 
   void goCatDetail(BuildContext context){ // line 144
     Navigator.of(context).pushNamed(
       CatDetailScreen.routeName,
-      arguments: cat,
+      arguments: _cat,
     );
   }
   @override
   Widget build(BuildContext context) {
     List<String> urls = [];
-    cat['injury_img'].forEach((url)=> urls.add(url.toString()));
+    _cat['injury_img'].forEach((url)=> urls.add(url.toString()));
     return Card(
       clipBehavior: Clip.antiAliasWithSaveLayer,
       elevation: 10,
@@ -36,7 +36,7 @@ class InjuredCatCard extends StatelessWidget{
                   padding:
                     const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 5),
                   child: Text(
-                    cat['cat_name'],
+                    _cat['cat_name'],
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.headline4,
                   ),
@@ -58,7 +58,7 @@ class InjuredCatCard extends StatelessWidget{
                       child: Stack(
                         children: [
                           PageView(
-                            controller: pageViewController,
+                            controller: _pageViewController,
                             scrollDirection: Axis.horizontal,
                             children: urls.map((url) => 
                               Image.network(
@@ -74,11 +74,11 @@ class InjuredCatCard extends StatelessWidget{
                               padding: 
                               const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
                               child: SmoothPageIndicator(
-                                controller: pageViewController,
+                                controller: _pageViewController,
                                 count: urls.length,
                                 axisDirection: Axis.horizontal,
                                 onDotClicked: (i) {
-                                  pageViewController.animateToPage(
+                                  _pageViewController.animateToPage(
                                     i,
                                     duration: Duration(milliseconds: 500),
                                     curve: Curves.ease,
@@ -136,7 +136,7 @@ class InjuredCatCard extends StatelessWidget{
                           child: Row(
                             children: [
                               Text("Contact: ", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
-                              Text(cat['passerby_hp'], style: Theme.of(context).textTheme.subtitle1),
+                              Text(_cat['passerby_hp'], style: Theme.of(context).textTheme.subtitle1),
                             ],
                           ),
                         ),
@@ -148,7 +148,7 @@ class InjuredCatCard extends StatelessWidget{
                         ),
                         Padding(
                           padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
-                          child: Text(cat['injury_desc'], style: Theme.of(context).textTheme.subtitle1),
+                          child: Text(_cat['injury_desc'], style: Theme.of(context).textTheme.subtitle1),
                         ),
                         Align(
                           alignment: const AlignmentDirectional(-1, 0),
@@ -175,7 +175,7 @@ class InjuredCatCard extends StatelessWidget{
                               ),
                               // onPressed: () => remove(cat.id),
                               onPressed: (){
-                                InjuryMngr.deleteInjury(cat['cat_id']);
+                                InjuryMngr.deleteInjury(_cat['cat_id']);
                               },
                             ),
                           ),

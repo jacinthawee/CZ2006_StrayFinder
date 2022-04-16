@@ -17,7 +17,6 @@ class CatMapScreen extends StatefulWidget {
 }
 
 class _CatMapScreenState extends State<CatMapScreen> {
-  ValueNotifier<bool> isDialOpen = ValueNotifier(false);
   final CustomInfoWindowController _controller = CustomInfoWindowController();
   late Future<Uint8List> _normalCatMarker;
   late Future<Uint8List> _injuredCatMarker;
