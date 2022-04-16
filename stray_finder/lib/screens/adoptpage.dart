@@ -30,6 +30,10 @@ import '../managers/AdoptManager.dart';
 class AdoptPage extends StatelessWidget {
   const AdoptPage({ Key? key }) : super(key: key);
 
+<<<<<<< HEAD
+=======
+  var adoptionCentres = AdoptMngr.getAdoptionCentres();
+>>>>>>> 9207b0167cd83bd2a1d4d9f3e611fb50998dfcb3
   @override
   Widget build(BuildContext context) {
     List<AdoptOrg> adoptionCentres = AdoptMngr.getAdoptionCentres();
