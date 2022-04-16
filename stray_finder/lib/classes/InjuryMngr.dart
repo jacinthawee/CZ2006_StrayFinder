@@ -83,4 +83,12 @@ class InjuryMngr {
     return contact;
   }
 
+  Future<bool> checkInjury(int catid) async{
+    var result = await FirebaseFirestore.instance
+    .collection('injuries')
+    .doc(catid.toString()).get();
+    if (result.exists) return true;
+    else return false;
+  }
+
 }

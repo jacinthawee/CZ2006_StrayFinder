@@ -1,6 +1,8 @@
 import 'dart:typed_data';
 import 'dart:ui' as ui;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
+import 'package:geocoder2/geocoder2.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:geolocator/geolocator.dart';
@@ -25,6 +27,14 @@ class MapUI {
     } else{
       throw "Access Denied";
     }
+  }
+
+  /// A method to turn input postal code to latitude and longitudes
+  static Future<GeoPoint> geoCode(String postal) async{
+    GeoData data = await Geocoder2.getDataFromAddress(
+      address: "Singapore+$postal",
+      googleMapApiKey: "AIzaSyDEgZFylVwu14etIAO19y2XDVMoIVvQTkw");
+    return GeoPoint(data.latitude, data.longitude);
   }
 
   /// A method to render customized google maps marker from asset images
