@@ -3,8 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../widgets/togglebutton.dart';
 import '../ui/ReportUI.dart';
-import '../classes/Images.dart';
-import '../classes/StrayCatMngr.dart';
+import '../managers/ImageMngr.dart';
+import '../managers/StrayCatMngr.dart';
 
 class IsThisTheCatPage extends StatefulWidget {
   @override
@@ -75,7 +75,7 @@ class _MyAppState extends State<IsThisTheCatPage> {
     //   String name = i['cat_name'];
     //   listwidget.add(IconToggleButton(id, name));}
     return FutureBuilder(
-      future: StrayCatMngr().getAllCatsByBreed(breed),
+      future: StrayCatMngr.getAllCatsByBreed(breed),
         builder: (BuildContext context, AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data!.isEmpty)
@@ -208,7 +208,7 @@ class _MyAppState extends State<IsThisTheCatPage> {
                             // Images.addImage(10, image);
                               {
                                 print("after");
-                            int newCatId = await StrayCatMngr().setNewID();
+                            int newCatId = await StrayCatMngr.setNewID();
 
                             print(newCatId);
                             ReportUI.goNameCatFound(

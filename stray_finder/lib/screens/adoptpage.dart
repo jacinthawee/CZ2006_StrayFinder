@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 // import 'package:google_fonts/google_fonts.dart';
 import '../classes/AdoptOrg.dart';
 import '../widgets/adopt.dart';
-import '../classes/AdoptManager.dart';
+import '../managers/AdoptManager.dart';
 
 class AdoptPage extends StatefulWidget {
   // const NoticeboardWidget({Key key}) : super(key: key);

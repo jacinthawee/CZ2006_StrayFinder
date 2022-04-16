@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../classes/InjuryMngr.dart';
+import '../managers/InjuryMngr.dart';
 import '../ui/ReportUI.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import '../classes/StrayCatMngr.dart';
+import '../managers/StrayCatMngr.dart';
 import '../ui/map_ui.dart';
 
 class AskIfInjuredPage extends StatefulWidget {
@@ -23,7 +23,6 @@ class _AskIfInjuredPageState extends State<AskIfInjuredPage> {
   final myController = TextEditingController();
 
   void initState() {
-    // TODO: implement initState
     super.initState();
     myController.addListener(() {
       setState(() {
@@ -175,14 +174,14 @@ class _AskIfInjuredPageState extends State<AskIfInjuredPage> {
                           onPressed: () async {
                         if (isExisting == true)
                         {
-                          bool exists = await InjuryMngr().checkInjury(id);
+                          bool exists = await InjuryMngr.checkInjury(id);
                           if (exists){await InjuryMngr.deleteInjury(id);}
-                          await StrayCatMngr().updateStatus(id, true);
-                          await StrayCatMngr().updateLocation(id, finalLoc);
+                          await StrayCatMngr.updateStatus(id, true);
+                          await StrayCatMngr.updateLocation(id, finalLoc);
                         }
                         else
                           {
-                            await StrayCatMngr().addCat(id, name, breed, true, finalLoc, image);}
+                            await StrayCatMngr.addCat(id, name, breed, true, finalLoc, image);}
 
 
                           ReportUI.goDescribeInjury(context, id, name, finalLoc);}
@@ -193,14 +192,14 @@ class _AskIfInjuredPageState extends State<AskIfInjuredPage> {
                       child: IconButton(icon: Icon(Icons.cancel, color: Color(0xFFC82626), size: 50,), onPressed: () async{
                         if (isExisting == true)
                         {
-                          bool exists = await InjuryMngr().checkInjury(id);
+                          bool exists = await InjuryMngr.checkInjury(id);
                           if (exists){await InjuryMngr.deleteInjury(id);}
-                          await StrayCatMngr().updateStatus(id, false);
-                          await StrayCatMngr().updateLocation(id, finalLoc);
+                          await StrayCatMngr.updateStatus(id, false);
+                          await StrayCatMngr.updateLocation(id, finalLoc);
                         }
                         else
                         {
-                          await StrayCatMngr().addCat(id, name, breed, false, finalLoc, image);}
+                          await StrayCatMngr.addCat(id, name, breed, false, finalLoc, image);}
 
 
                         ReportUI.goDescribeInjury(context, id, name, finalLoc);

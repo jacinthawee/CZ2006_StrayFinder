@@ -3,7 +3,7 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:async';
 import 'dart:io';
 import '../ui/ReportUI.dart';
-import '../classes/UserVolunteer.dart';
+import '../managers/UserVolunteerMngr.dart';
 
 class CustomiseProfile extends StatefulWidget {
   @override
@@ -133,7 +133,7 @@ class _CustomiseProfileState extends State<CustomiseProfile> {
                                   initialValue: newContact,
                                   // controller: myController2,
                                   cursorColor: Color(0xff754E46),
-                                  keyboardType: TextInputType.phone,
+                                  keyboardType: TextInputType.number,
                                   decoration: const InputDecoration(
                                     prefixIcon: Icon(Icons.call),
                                     enabledBorder: OutlineInputBorder(
@@ -235,7 +235,7 @@ class _CustomiseProfileState extends State<CustomiseProfile> {
                               context,
                               "Please enter numbers only for contact!",
                               "Error");
-                        } else if (await UserVolunteer().checkDupName(newName!) == true && newName! != routeArgs['org_name']){
+                        } else if (await UserVolunteerMngr.checkDupName(newName!) == true && newName! != routeArgs['org_name']){
                           showAlertDialog(
                               context,
                               "Duplicate organization name! Please enter a new one.",
@@ -249,7 +249,7 @@ class _CustomiseProfileState extends State<CustomiseProfile> {
                               "Please only enter 8 digits for your contact number!",
                               "Error");
                         } else {
-                          UserVolunteer()
+                          UserVolunteerMngr
                               .editProfile(email, newName!, newContact!, newAddr!);
 
                           showAlertDialog(
