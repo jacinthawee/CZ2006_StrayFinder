@@ -3,7 +3,7 @@ import '../classes/AdoptOrg.dart';
 class AdoptMngr{
 
 
-  var adoptionCentres = [AdoptOrg(id: 1, name: "Animal Lovers League", email: "general@animalloversleague.com", contact: "9670 8052", address: "The Animal Lodge, 59 Sungei Tengah Road, Block Q #01-29, Singapore 699014", openinghours: "By Appointment Only", fee: "Free", website: "https://www.animalloversleague.com/", pic: 'images/all.jpeg',
+  static List<AdoptOrg> adoptionCentres = [AdoptOrg(id: 1, name: "Animal Lovers League", email: "general@animalloversleague.com", contact: "9670 8052", address: "The Animal Lodge, 59 Sungei Tengah Road, Block Q #01-29, Singapore 699014", openinghours: "By Appointment Only", fee: "Free", website: "https://www.animalloversleague.com/", pic: 'images/all.jpeg',
       pic2: 'images/all2.jpeg', pic3: 'images/all3.jpeg'),
     AdoptOrg(id: 2, name: "Cat Welfare Society ", email: "info@catwelfare.org", contact: "NA", address: "NA", openinghours: "NA", fee: "40-80 SGD", website: "https://www.catwelfare.org/", pic:'images/cws.jpeg', pic2:'images/cws2.jpeg', pic3:'images/cws3.jpeg'),
     AdoptOrg(id: 3, name: "Causes for Animals Singapore ", email: "adoption@causesforanimals.com", contact: "9793 7162 / 9697 3491", address: "NA", openinghours: "NA", fee: "100-150 SGD", website: "https://www.causesforanimals.com/", pic: 'images/cas.jpeg', pic2: 'images/cas2.jpeg', pic3: 'images/cas3.jpeg'),
