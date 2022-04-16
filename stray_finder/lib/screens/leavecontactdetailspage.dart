@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../ui/ReportUI.dart';
-import '../classes/InjuryMngr.dart';
+import '../managers/InjuryMngr.dart';
 
 class LeaveContactDetailsPage extends StatefulWidget {
   const LeaveContactDetailsPage({Key? key}) : super(key: key);
@@ -148,7 +148,7 @@ class _LeaveContactDetailsPageState extends State<LeaveContactDetailsPage> {
                               controller: myController2,
                               onChanged: (value)
                               {contactPasserby = value;},
-                              keyboardType: TextInputType.phone,
+                              keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                                 prefixIcon: Icon(Icons.call),
                                 border: OutlineInputBorder(

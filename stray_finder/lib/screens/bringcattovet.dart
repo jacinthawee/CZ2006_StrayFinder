@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../ui/ReportUI.dart';
-import '../classes/InjuryMngr.dart';
+import '../managers/InjuryMngr.dart';
 
 class BringCatToVetPage extends StatelessWidget{
 

@@ -5,7 +5,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'dart:async';
 import 'dart:io';
 import '../ui/ReportUI.dart';
-import '../classes/Images.dart';
+import '../managers/ImageMngr.dart';
 
 class UploadPicturePage extends StatefulWidget {
   @override
@@ -168,7 +168,7 @@ class _UploadPicturePageState extends State<UploadPicturePage> {
                                                 FirebaseFirestore.instance
                                                     .collection('images')
                                                     .doc();
-                                            String imgURL = await Images()
+                                            String imgURL = await ImageMngr
                                                 .saveImg(_image, imgRef);
 
                                             ReportUI.goToIsThisTheCatPage(
@@ -187,7 +187,7 @@ class _UploadPicturePageState extends State<UploadPicturePage> {
                                                   FirebaseFirestore.instance
                                                       .collection('images')
                                                       .doc();
-                                              String imgURL = await Images()
+                                              String imgURL = await ImageMngr
                                                   .saveImg(_image2, imgRef);
 
                                               ReportUI.goToIsThisTheCatPage(

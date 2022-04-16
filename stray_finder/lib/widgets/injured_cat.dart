@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import '../classes/InjuryMngr.dart';
+import '../managers/InjuryMngr.dart';
 import '../screens/cat_map.dart';
 class InjuredCatCard extends StatelessWidget{
   Map<String, dynamic> cat;

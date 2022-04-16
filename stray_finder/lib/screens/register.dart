@@ -6,7 +6,7 @@ import './auth-exception-handler.dart';
 import '../ui/RegisterUI.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import '../classes/UserVolunteer.dart';
+import '../managers/UserVolunteerMngr.dart';
 
 
 import 'authentication.dart';
@@ -368,7 +368,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               // },
                               // controller: _contactnoController,
                               cursorColor: Color(0xff754E46),
-                              keyboardType: TextInputType.phone,
+                              keyboardType: TextInputType.number,
                               decoration: InputDecoration(
                                 prefixIcon: Icon(Icons.call),
                                 hintText: 'E.g. 12345678',
@@ -480,7 +480,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         showSpinner = true;
                       });
 
-                      if (await UserVolunteer().checkDupName(orgname) == false)
+                      if (await UserVolunteerMngr.checkDupName(orgname) == false)
                       {
                         try {
 
@@ -488,7 +488,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
                         final newUser = await _auth.createUserWithEmailAndPassword(
                             email: email, password: password);
-                        UserVolunteer().addUser(email, contactno, orgname, address);
+                        UserVolunteerMngr.addUser(email, contactno, orgname, address);
 
 
     //     .then(

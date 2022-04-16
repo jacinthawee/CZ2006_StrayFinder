@@ -5,7 +5,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'dart:async';
 import 'dart:io';
 import '../ui/ReportUI.dart';
-import '../classes/Images.dart';
+import '../managers/ImageMngr.dart';
 
 class DescribeInjuryPage extends StatefulWidget {
   const DescribeInjuryPage({Key? key}) : super(key: key);
@@ -288,7 +288,7 @@ class _DescribeInjuryPageState extends State<DescribeInjuryPage> {
                     if (_image != null)
                     {
                       DocumentReference imgRef = FirebaseFirestore.instance.collection('images').doc();
-                      String imgURL = await Images().saveImg(_image, imgRef);
+                      String imgURL = await ImageMngr.saveImg(_image, imgRef);
                       listImg.add(imgURL);
                       ReportUI.goBringToVet(context, id, desc, listImg, name, lastSeen);
                     }
@@ -299,7 +299,7 @@ class _DescribeInjuryPageState extends State<DescribeInjuryPage> {
                           {tempList.add(File(i.path));
                           }
                         DocumentReference imgRef = FirebaseFirestore.instance.collection('images').doc();
-                        List<String> imgURLs = await Images().saveImgs(tempList, imgRef);
+                        List<String> imgURLs = await ImageMngr.saveImgs(tempList, imgRef);
                         listImg = imgURLs;
                         ReportUI.goBringToVet(context, id, desc, listImg, name, lastSeen);
                       }

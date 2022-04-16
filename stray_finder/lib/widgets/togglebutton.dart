@@ -1,7 +1,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import '../classes/StrayCatMngr.dart';
+import '../managers/StrayCatMngr.dart';
 
 class IconToggleButton extends StatefulWidget {
   bool isSelected = false;

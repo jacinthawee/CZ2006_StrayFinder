@@ -20,6 +20,9 @@ class VetMngr {
   }
   /// A method to filter 5 closest Vets based on location provided
   static List<dynamic> filterFromLocation(double lat, double long){
+    if (_vetList.length <= 5) {
+      return _vetList;
+    }
     Map<dynamic, double> distance = {};
     for (var vet in _vetList) {
       distance[vet] = Geolocator.distanceBetween(lat, long, vet['lat'], vet['long']);
