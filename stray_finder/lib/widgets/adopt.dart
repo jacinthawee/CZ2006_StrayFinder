@@ -5,10 +5,10 @@ import '../classes/AdoptOrg.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 
-class Adopt extends StatelessWidget{
+class AdoptWidget extends StatelessWidget{
   AdoptOrg adopt;
   PageController pageViewController = PageController(initialPage: 0);
-  Adopt(this.adopt);
+  AdoptWidget(this.adopt);
 
 
   @override
@@ -63,19 +63,19 @@ class Adopt extends StatelessWidget{
                             scrollDirection: Axis.horizontal,
                             children: [
                               Image.asset(
-                                adopt.pic,
+                                adopt.pic1Path,
                                 width: double.infinity,
                                 height: double.infinity,
                                 fit: BoxFit.cover,
                               ),
                               Image.asset(
-                                adopt.pic2,
+                                adopt.pic2Path,
                                 width: 100,
                                 height: 100,
                                 fit: BoxFit.cover,
                               ),
                               Image.asset(
-                                adopt.pic3,
+                                adopt.pic3Path,
                                 width: 100,
                                 height: 100,
                                 fit: BoxFit.cover,

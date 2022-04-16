@@ -302,7 +302,7 @@ class MyApp extends StatelessWidget {
         '/vet': (context) => VetScreen(),
         '/volunteertabs': (context) => TabsVolunteer(),
         '/usertabs': (context) => TabsUser(),
-        '/noticeboard': (context) => NoticeboardWidget(),
+        '/noticeboard': (context) => NoticeboardScreen(),
         '/catmap': (context) => CatDetailScreen(),
         '/thankyouforreporting': (context) => ThankYouForReportingPage(),
         '/namecatfound': (context) => NameCatFound(),
