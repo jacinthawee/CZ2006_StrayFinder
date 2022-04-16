@@ -128,9 +128,7 @@ class ReportUI {
         'https://catclassifier-aljhyhz73a-as.a.run.app/predict',
         data: formData);
     if (response.statusCode == 200) {
-      var jsonResponse = convert.jsonDecode(response.toString()) as Map<
-          String,
-          dynamic>;
+      var jsonResponse = convert.jsonDecode(response.toString()) as Map<String, dynamic>;
       var result = jsonResponse['result'];
       return result;
     } else {
@@ -157,14 +155,14 @@ class ReportUI {
     }
   }
 
-  static Future<Position?>? getCurrentLocation() async{
-    var status = await Permission.locationWhenInUse.request();
-    print(status);
-    if (status.isGranted) {
-      var location = await Geolocator.getCurrentPosition();
-      return location;
-    } else{
-      return null;
-    }
-  }
+  // static Future<Position?>? getCurrentLocation() async{
+  //   var status = await Permission.locationWhenInUse.request();
+  //   print(status);
+  //   if (status.isGranted) {
+  //     var location = await Geolocator.getCurrentPosition();
+  //     return location;
+  //   } else{
+  //     return null;
+  //   }
+  // }
 }
