@@ -33,7 +33,7 @@ class _NoticeboardScreenState extends State<NoticeboardScreen> {
             itemCount: injuredCats.length,
             itemBuilder: (context, ind){
               var cat = injuredCats[ind].data();
-              return InjuredCatCard(cat);
+              return InjuredCatWidget(cat);
             }
           );
         } else{

@@ -40,7 +40,7 @@ class _DescribeInjuryPageState extends State<DescribeInjuryPage> {
     print("Image List Length:" + imageFileList!.length.toString());
     setState((){});
   }
-  Future chooseImage() async{ //camera
+  Future<void> chooseImage() async{ //camera
     final image = await imagePicker.pickImage(source: ImageSource.camera);
 
     setState(() {

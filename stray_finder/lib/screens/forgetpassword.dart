@@ -1,21 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 final FirebaseAuth _auth = FirebaseAuth.instance;
-class ForgetPass extends StatefulWidget {
+class ForgetPasswordPage extends StatefulWidget {
 
   @override
-  State<ForgetPass> createState() => _ForgetPassState();
+  State<ForgetPasswordPage> createState() => _ForgetPasswordPageState();
 }
 
-class _ForgetPassState extends State<ForgetPass> {
+class _ForgetPasswordPageState extends State<ForgetPasswordPage> {
   late String email;
   bool showSpinner = false;
   final myController = TextEditingController();
   bool submit = false;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     myController.addListener(() {
       setState(() {

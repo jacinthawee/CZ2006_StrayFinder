@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../managers/InjuryMngr.dart';
-import '../screens/cat_map.dart';
-class InjuredCatCard extends StatelessWidget{
+import '../screens/cat_detail_screen.dart';
+class InjuredCatWidget extends StatelessWidget{
   Map<String, dynamic> _cat;
   PageController _pageViewController = PageController(initialPage: 0);
-  InjuredCatCard(this._cat);
+  InjuredCatWidget(this._cat);
 
-  void goCatDetail(BuildContext context){ // line 144
+  void _goCatDetail(BuildContext context){ // line 144
     Navigator.of(context).pushNamed(
-      CatDetailScreen.routeName,
+      '/cat_detail_screen',
       arguments: _cat,
     );
   }
@@ -119,7 +119,7 @@ class InjuredCatCard extends StatelessWidget{
                             minimumSize: Size.zero,
                             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                           ),
-                          onPressed: ()=>goCatDetail(context), 
+                          onPressed: ()=>_goCatDetail(context), 
                           icon: Icon(Icons.location_on, color: Theme.of(context).colorScheme.secondary, size:20), 
                           label: const Text(
                             "Location Tracker", 

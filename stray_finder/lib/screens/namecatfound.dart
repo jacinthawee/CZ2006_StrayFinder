@@ -2,19 +2,18 @@ import 'package:flutter/material.dart';
 import '../ui/ReportUI.dart';
 
 
-class NameCatFound extends StatefulWidget {
-  const NameCatFound({Key? key}) : super(key: key);
+class NameCatFoundPage extends StatefulWidget {
+  const NameCatFoundPage({Key? key}) : super(key: key);
 
   @override
-  State<NameCatFound> createState() => _NameCatFoundState();
+  State<NameCatFoundPage> createState() => _NameCatFoundPageState();
 }
 
-class _NameCatFoundState extends State<NameCatFound> {
+class _NameCatFoundPageState extends State<NameCatFoundPage> {
   final myController = TextEditingController();
   late String newName = '';
   bool submit = false;
   void initState() {
-    // TODO: implement initState
     super.initState();
     myController.addListener(() {
       setState(() {

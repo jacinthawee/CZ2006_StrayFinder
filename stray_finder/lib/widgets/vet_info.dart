@@ -2,10 +2,10 @@ import 'package:custom_info_window/custom_info_window.dart';
 import 'package:flutter/material.dart';
 import '../ui/map_ui.dart';
 
-class VetInfo extends StatelessWidget {
+class VetInfoWidget extends StatelessWidget {
   Map<String, dynamic> _vet;
   CustomInfoWindowController _controller;
-  VetInfo(this._vet, this._controller);
+  VetInfoWidget(this._vet, this._controller);
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'dart:async';
 import 'dart:io';
 import '../ui/ReportUI.dart';
@@ -19,7 +18,7 @@ class _UploadPicturePageState extends State<UploadPicturePage> {
   var _image2;
 
   final picker = ImagePicker();
-  Future chooseImage() async {
+  Future<void> chooseImage() async {
     final image = await picker.pickImage(source: ImageSource.camera);
 
     setState(() {
@@ -34,7 +33,7 @@ class _UploadPicturePageState extends State<UploadPicturePage> {
     });
   }
 
-  Future chooseImageGallery() async {
+  Future<void> chooseImageGallery() async {
     final image2 = await picker.pickImage(source: ImageSource.gallery);
 
     setState(() {

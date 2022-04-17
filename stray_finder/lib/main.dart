@@ -212,28 +212,25 @@
 // //     return queries;
 // //   }
 // // }
-
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import './screens/customiseprofile.dart';
 import './screens/forgetpassword.dart';
 import './screens/isthisthecat.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
 import './screens/login.dart';
 import './screens/leavecontactdetailspage.dart';
 import './screens/register.dart';
 import './screens/bringcattovet.dart';
 import './screens/askifinjured.dart';
 import './screens/vet_screen.dart';
-import './screens/tabs_user.dart';
+import './screens/tabs_passerby.dart';
 import './screens/tabs_volunteer.dart';
 import './screens/noticeboard_screen.dart';
-import './screens/cat_map.dart';
+import './screens/cat_detail_screen.dart';
 import './screens/thankyouforreporting.dart';
 import './screens/namecatfound.dart';
-// import 'isthisthecat.dart';
 import './screens/describeinjury.dart';
 import './screens/uploadpicture.dart';
-import './widgets/adopt.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -293,7 +290,7 @@ class MyApp extends StatelessWidget {
         )
       ),
       routes: {
-        '/': (context) => Home(),
+        '/': (context) => HomePage(),
         '/login': (context) => LoginPage(),
         '/register': (context) => RegistrationPage(),
         '/report': (context) => LeaveContactDetailsPage(),
@@ -301,23 +298,23 @@ class MyApp extends StatelessWidget {
         '/askifinjured': (context) => AskIfInjuredPage(),
         '/vet': (context) => VetScreen(),
         '/volunteertabs': (context) => TabsVolunteer(),
-        '/usertabs': (context) => TabsUser(),
+        '/usertabs': (context) => TabsPasserby(),
         '/noticeboard': (context) => NoticeboardScreen(),
-        '/catmap': (context) => CatDetailScreen(),
+        // '/catmap': (context) => CatDetailScreen(),
         '/thankyouforreporting': (context) => ThankYouForReportingPage(),
-        '/namecatfound': (context) => NameCatFound(),
+        '/namecatfound': (context) => NameCatFoundPage(),
         '/isthisthecat': (context) => IsThisTheCatPage(),
         '/describeinjury': (context) => DescribeInjuryPage(),
         '/uploadpicture': (context) => UploadPicturePage(),
-        '/customiseprofile': (context) => CustomiseProfile(),
-        '/forgetpassword': (context) => ForgetPass(),
-        CatDetailScreen.routeName : (BuildContext ctx) => CatDetailScreen(),
+        '/customiseprofile': (context) => CustomiseProfilePage(),
+        '/forgetpassword': (context) => ForgetPasswordPage(),
+        '/cat_detail_screen' : (context) => CatDetailScreen(),
       },
     );
   }
 }
 
-class Home extends StatelessWidget {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

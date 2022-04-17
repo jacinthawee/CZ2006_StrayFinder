@@ -7,7 +7,6 @@ import '../ui/map_ui.dart';
 import '../widgets/injury_info.dart';
 
 class CatDetailScreen extends StatelessWidget {
-  static const routeName = '/cat_detail_screen';
   final CustomInfoWindowController _controller = CustomInfoWindowController();
 
   Set<Marker> _createMarkers(GeoPoint loc, Map<String, dynamic> cat, Uint8List cat_marker){
@@ -20,7 +19,7 @@ class CatDetailScreen extends StatelessWidget {
         icon: BitmapDescriptor.fromBytes(cat_marker),
         onTap: (){
           _controller.addInfoWindow!(
-            InjuryInfo(cat, _controller),
+            InjuryInfoWidget(cat, _controller),
             pos,
           );
         }

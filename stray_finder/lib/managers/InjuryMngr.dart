@@ -1,22 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'StrayCatMngr.dart';
+import './StrayCatMngr.dart';
 import './ImageMngr.dart';
 
 class InjuryMngr {
-  // For collecting info on injury of contact and if the passerby is taking the cat to the vet
-  // Injured(
-  //     this.catid,
-  //     // this.description,
-  //     // this.photos,
-  //     // this.passerbyContact,
-  //     // this.passerbyName,
-  //     );
-  // final int catid;
-  // final String description;
-  // final List<File> photos;
-  // final String passerbyContact;
-  // final String passerbyName;
-
   static CollectionReference injuries = FirebaseFirestore.instance.collection('injuries');
 
   static Future<void> addInjury(int catid, String description, List<String> photos, String passerbyContact, String passerbyName, String catName, GeoPoint lastSeen){
