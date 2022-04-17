@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../managers/InjuryMngr.dart';
-import '../ui/ReportUI.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import '../managers/InjuryMngr.dart';
+import '../ui/ReportUI.dart';
 import '../managers/StrayCatMngr.dart';
 import '../ui/map_ui.dart';
 

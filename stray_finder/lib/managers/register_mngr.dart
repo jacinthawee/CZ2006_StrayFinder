@@ -1,7 +1,6 @@
 
-import 'auth-status-enum.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-class AuthExceptionHandler {
+import '../screens/auth-status-enum.dart';
+class RegisterMngr {
   static handleException(e) {
     print(e.code);
     var status;

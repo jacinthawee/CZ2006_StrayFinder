@@ -1,5 +1,3 @@
-
-
 class AdoptOrg{
   int id;
   String name;

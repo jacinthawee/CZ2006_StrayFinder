@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'ImageMngr.dart';
+import './ImageMngr.dart';
 class StrayCatMngr {
   var strayCatList = [];
   static CollectionReference cats = FirebaseFirestore.instance.collection('cats');

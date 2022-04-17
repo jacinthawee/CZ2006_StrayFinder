@@ -1,9 +1,7 @@
 
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../widgets/togglebutton.dart';
 import '../ui/ReportUI.dart';
-import '../managers/ImageMngr.dart';
 import '../managers/StrayCatMngr.dart';
 
 class IsThisTheCatPage extends StatefulWidget {
@@ -13,19 +11,11 @@ class IsThisTheCatPage extends StatefulWidget {
 
 class _MyAppState extends State<IsThisTheCatPage> {
 
-  // bool check = false;
   bool finalSelected = false;
   int length = 0;
   int count = 0;
   int id = -1;
   String catName = "";
-  String _platformVersion = 'Unknown';
-
-  @override
-  void initState() {
-    // finalSelected = true;
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +76,7 @@ class _MyAppState extends State<IsThisTheCatPage> {
             var listwidget =
             snapshot.data!
                 .map((cat) =>
-                IconToggleButton(cat))
+                IconToggleButtonWidget(cat))
                 .toList();
             length = listwidget.length;
             return Scaffold(

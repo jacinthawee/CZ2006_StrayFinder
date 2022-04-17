@@ -1,13 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:custom_info_window/custom_info_window.dart';
 import 'package:flutter/material.dart';
-
 import '../ui/map_ui.dart';
 
-class CatInfo extends StatelessWidget {
+class CatInfoWidget extends StatelessWidget {
   Map<String, dynamic> _cat;
   CustomInfoWindowController _controller;
-  CatInfo(this._cat, this._controller);
+  CatInfoWidget(this._cat, this._controller);
 
   @override
   Widget build(BuildContext context) {

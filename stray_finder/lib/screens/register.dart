@@ -1,15 +1,9 @@
-// import 'package:cz2006_test/screens/auth-exception-handler.dart';
-
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import './auth-exception-handler.dart';
+import '../managers/register_mngr.dart';
 import '../ui/RegisterUI.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../managers/UserVolunteerMngr.dart';
-
-
-import 'authentication.dart';
 
 class RegistrationPage extends StatefulWidget {
   @override
@@ -502,7 +496,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           Navigator.pushNamed(context, '/login');
                         }
                       } catch (e) {
-                        final errorMsg = AuthExceptionHandler.generateExceptionMessage(AuthExceptionHandler.handleException(e));
+                        final errorMsg = RegisterMngr.generateExceptionMessage(RegisterMngr.handleException(e));
                         showAlertDialog(context, errorMsg, "Error");
                       }
                       setState(() {

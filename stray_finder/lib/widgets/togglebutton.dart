@@ -1,25 +1,22 @@
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import '../managers/StrayCatMngr.dart';
 
-class IconToggleButton extends StatefulWidget {
+class IconToggleButtonWidget extends StatefulWidget {
   bool isSelected = false;
   bool isDisabled = false;
   Map<String, dynamic> cat;
   // String name;
   // int catID = -1;
-  IconToggleButton(this.cat);
+  IconToggleButtonWidget(this.cat);
 
 
 
 
   @override
-  State<IconToggleButton> createState() => _IconToggleButtonState();
+  State<IconToggleButtonWidget> createState() => _IconToggleButtonWidgetState();
 
 }
 
-class _IconToggleButtonState extends State<IconToggleButton> {
+class _IconToggleButtonWidgetState extends State<IconToggleButtonWidget> {
   // bool isSelected = false;
   @override
   Widget build(BuildContext context) {

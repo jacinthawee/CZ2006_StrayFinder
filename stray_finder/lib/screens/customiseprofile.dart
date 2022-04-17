@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:async';
-import 'dart:io';
-import '../ui/ReportUI.dart';
 import '../managers/UserVolunteerMngr.dart';
 
-class CustomiseProfile extends StatefulWidget {
+class CustomiseProfilePage extends StatefulWidget {
   @override
-  State<CustomiseProfile> createState() => _CustomiseProfileState();
+  State<CustomiseProfilePage> createState() => _CustomiseProfilePageState();
 }
 
-class _CustomiseProfileState extends State<CustomiseProfile> {
+class _CustomiseProfilePageState extends State<CustomiseProfilePage> {
   String? newAddr;
   String? newName;
   String? newContact;

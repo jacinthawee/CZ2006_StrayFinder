@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:stray_finder/screens/cat_map_screen.dart';
+import './cat_map_screen.dart';
 import './vet_screen.dart';
 import './noticeboard_screen.dart';
 import '../managers/UserVolunteerMngr.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
-import 'vet_screen.dart';
-import 'noticeboard_screen.dart';
 
 class TabsVolunteer extends StatefulWidget {
   @override

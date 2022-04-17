@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:custom_info_window/custom_info_window.dart';
-import 'package:stray_finder/widgets/vet_info.dart';
+import '../widgets/vet_info.dart';
 import '../managers/vet_manager.dart';
 import '../ui/map_ui.dart';
 
@@ -55,7 +55,7 @@ class _VetScreenState extends State<VetScreen> {
           icon: BitmapDescriptor.fromBytes(vetMarker),
           onTap: () {
             _controller.addInfoWindow!(
-              VetInfo(vet, _controller),
+              VetInfoWidget(vet, _controller),
               pos,
             );
           });

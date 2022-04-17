@@ -3,8 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:custom_info_window/custom_info_window.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:stray_finder/ui/map_ui.dart';
-import 'package:stray_finder/widgets/cat_legend.dart';
+import '../ui/map_ui.dart';
+import '../widgets/cat_legend.dart';
 import '../widgets/cat_info.dart';
 import 'dart:async';
 
@@ -43,7 +43,7 @@ class _CatMapScreenState extends State<CatMapScreen> {
         icon: cat['is_injured']? BitmapDescriptor.fromBytes(catMarker[1]): BitmapDescriptor.fromBytes(catMarker[0]),
         onTap: (){
           _controller.addInfoWindow!(
-            CatInfo(cat, _controller),
+            CatInfoWidget(cat, _controller),
             pos,
           );
         }
@@ -99,7 +99,7 @@ class _CatMapScreenState extends State<CatMapScreen> {
                 ),
                 const Align(
                   alignment: Alignment(0.95,-0.97),
-                  child: Legend(),
+                  child: MapLegendWidget(),
                 ),
               ],
             ),
