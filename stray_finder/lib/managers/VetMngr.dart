@@ -1,5 +1,5 @@
 import 'package:geolocator/geolocator.dart';
-import '../ui/vet_ui.dart';
+import '../ui/VetUI.dart';
 
 /// Represents the control class that has methods controlling Vet
 class VetMngr {
@@ -18,6 +18,7 @@ class VetMngr {
   static List<dynamic> get vets{
     return _vetList;
   }
+  
   /// A method to filter 5 closest Vets based on location provided
   static List<dynamic> filterFromLocation(double lat, double long){
     if (_vetList.length <= 5) {

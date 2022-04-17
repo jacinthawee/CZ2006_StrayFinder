@@ -4,20 +4,31 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../ui/LoginUI.dart';
 
 
+///An attribute that uses Firebase authentication
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
+///A page that allows the user to login
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
+///State of the app
 class _LoginPageState extends State<LoginPage> {
+
+  ///Attribute that indicates the user's email address
   late String email;
+   ///Attribute that indicates the user's password
   late String password;
+   ///Attribute that controls if the loading spinner is shown or not
   bool showSpinner = false;
+   ///Attribute that indicates if the password is hidden or not
   bool _isHidden = true;
+   ///Controller that controls the email address textfield
   final myController = TextEditingController();
+   ///Attribute that indicates the user's password
   final myController1 = TextEditingController();
+  ///Attribute that enables the login button to be enabled or disabled
   bool submit = false;
   @override
   void initState() {
@@ -45,16 +56,12 @@ class _LoginPageState extends State<LoginPage> {
     }
     );
   }
-  // @override
-  // void dispose() {
-  //   // Clean up the controller when the widget is disposed.
-  //   myController.dispose();
-  //   super.dispose();
-  // }
   @override
 
 
   @override
+
+  ///A method to build the page
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
@@ -300,6 +307,7 @@ class _LoginPageState extends State<LoginPage> {
 
 
 
+///A method to toggle between masking and unmasking the password
   void _togglePasswordView() {
     setState(() {
       _isHidden = !_isHidden;
@@ -307,6 +315,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
+///A method to show alert dialog when there is an error\
 showAlertDialog(BuildContext context) {
 
   // set up the button

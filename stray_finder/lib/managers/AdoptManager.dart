@@ -1,8 +1,9 @@
 import '../classes/AdoptOrg.dart';
 
+/// Represents the control class that has methods controlling AdoptOrg 
 class AdoptMngr{
 
-
+  /// A list of adoption organisations
   static List<AdoptOrg> _adoptionCentres = [
     AdoptOrg(id: 1, name: "Animal Lovers League", email: "general@animalloversleague.com", contact: "9670 8052", address: "The Animal Lodge, 59 Sungei Tengah Road, Block Q #01-29, Singapore 699014", openinghours: "By Appointment Only", fee: "Free", website: "https://www.animalloversleague.com/", pic1Path: 'images/all.jpeg', pic2Path: 'images/all2.jpeg', pic3Path: 'images/all3.jpeg'),
     AdoptOrg(id: 2, name: "Cat Welfare Society ", email: "info@catwelfare.org", contact: "NA", address: "NA", openinghours: "NA", fee: "40-80 SGD", website: "https://www.catwelfare.org/", pic1Path:'images/cws.jpeg', pic2Path:'images/cws2.jpeg', pic3Path:'images/cws3.jpeg'),
@@ -15,6 +16,7 @@ class AdoptMngr{
     AdoptOrg(id: 9, name: "The Cat Museum / Kitten Sanctuary", email: "purr@kittensanctuarysg.org", contact: "NA", address: "737A North Bridge Road, Singapore 198705", openinghours: "By Appointment Only", fee: "80-150 SGD", website: "https://www.kittensanctuarysg.org/", pic1Path: 'images/ks.jpeg', pic2Path: 'images/ks2.jpeg', pic3Path: 'images/ks3.jpeg'),
   ];
 
+  /// A get method to get a list of all adoption organisations
   static List<AdoptOrg> getAdoptionCentres(){
     return _adoptionCentres;
   }

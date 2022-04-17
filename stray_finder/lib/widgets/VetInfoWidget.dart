@@ -1,13 +1,17 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:custom_info_window/custom_info_window.dart';
 import 'package:flutter/material.dart';
-import '../ui/map_ui.dart';
+import '../ui/MapUI.dart';
 
-class CatInfoWidget extends StatelessWidget {
-  Map<String, dynamic> _cat;
+/// A widget to show vet info window on Google Maps
+class VetInfoWidget extends StatelessWidget {
+  /// the vet to be shown
+  Map<String, dynamic> _vet;
+  // a controller to show info window when clicking on the marker
   CustomInfoWindowController _controller;
-  CatInfoWidget(this._cat, this._controller);
+  /// constructor of the class
+  VetInfoWidget(this._vet, this._controller);
 
+  /// build the widget
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,13 +21,14 @@ class CatInfoWidget extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
               SizedBox(
                 height: 20,
-                width: 145,
-                child: Text(_cat['cat_name'], style: Theme.of(context).textTheme.headline5, overflow: TextOverflow.ellipsis,)
+                width: 175,
+                child: Text(_vet['name'], style: Theme.of(context).textTheme.headline5, overflow: TextOverflow.ellipsis,)
               ),
               IconButton(
                 onPressed: _controller.hideInfoWindow, 
@@ -33,10 +38,30 @@ class CatInfoWidget extends StatelessWidget {
               )
             ],
           ),
-          SizedBox(
-            height: 100,
-            width: 100,
-            child: Image.network(_cat['img_URL'])
+          Row(
+            children: [
+              Text("Type: ", style: Theme.of(context).textTheme.bodyText1,),
+              Text(_vet['type'], style: Theme.of(context).textTheme.bodyText2,),
+            ],
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Address: ", style: Theme.of(context).textTheme.bodyText1,),
+              Flexible(child: Text('${_vet['address']}, S${_vet['postal_code']}', style: Theme.of(context).textTheme.bodyText2,)),
+            ],
+          ),
+          Row(
+            children: [
+              Text("Tel 1: ", style: Theme.of(context).textTheme.bodyText1,),
+              Text(_vet['tel_office_1'], style: Theme.of(context).textTheme.bodyText2,),
+            ],
+          ),
+          Row(
+            children: [
+              Text("Tel 2: ", style: Theme.of(context).textTheme.bodyText1,),
+              Text(_vet['tel_office_2'], style: Theme.of(context).textTheme.bodyText2,),
+            ],
           ),
           TextButton.icon(
             style: TextButton.styleFrom(
@@ -44,12 +69,9 @@ class CatInfoWidget extends StatelessWidget {
               minimumSize: Size.zero,
               tapTargetSize: MaterialTapTargetSize.shrinkWrap,
             ),
-            onPressed: () {
-              GeoPoint pos = _cat['lastSeenLoc'];
-              String dest = pos.latitude.toString() + " " + pos.longitude.toString();
-              // MapUI.openMap(dest);
+            onPressed: (){
               try {
-                MapUI.openMap(dest);
+                MapUI.openMap(_vet['address']);
               } catch (e) {
                 showDialog(
                   context: context,

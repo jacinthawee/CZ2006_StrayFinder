@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-/// Represents the boundary class that handles input related to Registration
+
 class RegisterUI{
 
-  /// The method to redirect to the login page
   static void goLogin(BuildContext context) {
 
     Navigator.pushNamed(
@@ -11,4 +10,12 @@ class RegisterUI{
       '/login',
     );
   }
+
+  // static Null registerUserToDatabase() {
+  //   async {
+  //     if (_formKey.currentState.validate()) {
+  //       _register();
+  //     }
+  //   }
+  // };
 }

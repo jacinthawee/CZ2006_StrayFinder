@@ -1,94 +1,52 @@
 import 'package:flutter/material.dart';
-import '../managers/register_mngr.dart';
+import '../managers/RegisterMngr.dart';
 import '../ui/RegisterUI.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import '../managers/UserVolunteerMngr.dart';
 
+/// Registrition page
 class RegistrationPage extends StatefulWidget {
   @override
   _RegistrationPageState createState() => _RegistrationPageState();
 }
 
+/// state of the page
 class _RegistrationPageState extends State<RegistrationPage> {
-
+  /// FirebaseAuth instance to help register a user
   final _auth = FirebaseAuth.instance;
+  /// user's input email
   late String email;
+  /// user's input password
   late String password;
+  /// user's input contact number
   late String contactno;
+  /// user's input organization name
   late String orgname;
+  /// user's input address
   late String address;
-
-
+  /// whether to show spinner when the registrition is loading
   bool showSpinner = false;
+  /// to show/hide the input password
   bool _isHiddenPassword = true;
+  /// controller for email text field
+  final myController = TextEditingController();
+  /// controller for password text field
+  final myController1 = TextEditingController();
+  /// controller for contact number text field
+  final myController2 = TextEditingController();
+  /// controller for orgnization name text field
+  final myController3 = TextEditingController();
+  /// controller for address text field
+  final myController4 = TextEditingController();
+  /// whether the user click register button
+  bool submit = false;
+
+  /// a method to control the show/hide password
   void _togglePassword() {
-    setState(() {
-      _isHiddenPassword = !_isHiddenPassword;
-    });
   }
 
-  final myController = TextEditingController();
-  final myController1 = TextEditingController();
-  final myController2 = TextEditingController();
-  final myController3 = TextEditingController();
-  final myController4 = TextEditingController();
-  bool submit = false;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    myController.addListener(() {
-      setState(() {
-        if (myController.text.isNotEmpty && myController1.text.isNotEmpty && myController2.text.isNotEmpty && myController3.text.length == 8 && myController4.text.isNotEmpty)
-          {submit = true;}
-        else
-          {submit = false;}
-      });
-    });
-    myController1.addListener(() {
-      setState(() {
-        if (myController.text.isNotEmpty && myController1.text.isNotEmpty && myController2.text.isNotEmpty && myController3.text.length == 8  && myController4.text.isNotEmpty)
-        {submit = true;}
-        else
-        {submit = false;}
-      });
-    }
-    );
-    myController2.addListener(() {
-      setState(() {
-        if (myController.text.isNotEmpty && myController1.text.isNotEmpty && myController2.text.isNotEmpty && myController3.text.length == 8  && myController4.text.isNotEmpty)
-        {submit = true;}
-        else
-        {submit = false;}
-      });
-    }
-    );
-    myController3.addListener(() {
-      setState(() {
-        if (myController.text.isNotEmpty && myController1.text.isNotEmpty && myController2.text.isNotEmpty && myController3.text.length == 8  && myController4.text.isNotEmpty)
-        {submit = true;}
-        else
-        {submit = false;}
-      });
-    }
-    );
-    myController4.addListener(() {
-      setState(() {
-        if (myController.text.isNotEmpty && myController1.text.isNotEmpty && myController2.text.isNotEmpty && myController3.text.length == 8  && myController4.text.isNotEmpty)
-        {submit = true;}
-        else
-        {submit = false;}
-      });
-    }
-    );
-  }
-  // @override
-  // void dispose() {
-  //   // Clean up the controller when the widget is disposed.
-  //   myController.dispose();
-  //   super.dispose();
-  // }
+  /// build the page
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,30 +85,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           child: TextField(
                             controller: myController,
                               onChanged: (value) {
-                                // setState(() {
-                                //   var _newMessage = value;
-                                //
-                                //   if(_newMessage.length > 0){  //add these lines
-                                //     isInputEmpty5 = false;
-                                //   } else if (_newMessage.length == 0){
-                                //     isInputEmpty5 = true;
-                                //   }
-                                //
-                                // });
                                 orgname = value;
-                                //Do something with the user input.
                               },
-    // onChanged: (value) {
-    // email = value;
-    // //Do something with the user input.
-    // },
-                              // validator: (String? value) {
-                              //   if (value!.isEmpty) {
-                              //     return "Please enter your organization's name";
-                              //   }
-                              //   return null;
-                              // },
-                              // controller: _orgnameController,
                               cursorColor: Color(0xff754E46),
                               keyboardType: TextInputType.text,
                               decoration: InputDecoration(
@@ -200,18 +136,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             child: TextField(
                                 controller: myController1,
                                 onChanged: (value) {
-                                  // setState(() {
-                                  //   var _newMessage = value;
-                                  //
-                                  //   if(_newMessage.length > 0){  //add these lines
-                                  //     isInputEmpty4 = false;
-                                  //   } else if (_newMessage.length == 0){
-                                  //     isInputEmpty4 = true;
-                                  //   }
-                                  //
-                                  // });
                                   email = value;
-                                  //Do something with the user input.
                                 },
                                 cursorColor: Color(0xff754E46),
                                 keyboardType: TextInputType.emailAddress,
@@ -263,18 +188,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           child: TextField(
                               controller: myController2,
                               onChanged: (value) {
-                                // setState(() {
-                                //   var _newMessage = value;
-                                //
-                                //   if(_newMessage.length > 0){  //add these lines
-                                //     isInputEmpty3 = false;
-                                //   } else if (_newMessage.length == 0){
-                                //     isInputEmpty3 = true;
-                                //   }
-                                //
-                                // });
                                 password = value;
-                                //Do something with the user input.
                               },
                               obscureText: _isHiddenPassword,
                               cursorColor: Color(0xff754E46),
@@ -332,35 +246,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           child: TextField(
                               controller: myController3,
                               onChanged: (value) {
-                                // setState(() {
-                                //   var _newMessage = value;
-                                //
-                                //   if(_newMessage.length > 0){  //add these lines
-                                //     isInputEmpty1 = false;
-                                //   } else if (_newMessage.length == 0){
-                                //     isInputEmpty1 = true;
-                                //   }
-                                //
-                                // });
                                 contactno = value;
-                                //Do something with the user input.
                               },
-                              // onSaved: (val) {
-                              //   contactno = val;
-                              // },
-                              // validator: (value) {
-                              //   if (value!.isEmpty) {
-                              //     return 'Please enter some name';
-                              //   }
-                              //   return null;
-                              // },
-                              // validator: (String? value) {
-                              //   if (value!.isEmpty) {
-                              //     return "Please enter your contact number";
-                              //   }
-                              //   return null;
-                              // },
-                              // controller: _contactnoController,
                               cursorColor: Color(0xff754E46),
                               keyboardType: TextInputType.number,
                               decoration: InputDecoration(
@@ -410,31 +297,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           child: TextField(
                               controller: myController4,
                               onChanged: (value) {
-
-                                // setState(() {
-                                //
-                                //
-                                //   var _newMessage = value;
-                                //
-                                //   if(_newMessage.length > 0){  //add these lines
-                                //     isInputEmpty2 = false;
-                                //   } else {
-                                //     isInputEmpty2 = true;
-                                //   }
-                                //
-                                // });
                                 address = value;
-                                //Do something with the user input.
                               },
-                              // onSaved: (val) {
-                              //   address = val;
-                              // },
-                              // validator: (value) {
-                              //   if (value!.isEmpty) {
-                              //     return 'Please enter some name';
-                              //   }
-                              //   return null;
-                              // },
                               maxLines: 12,
                               cursorColor: Color(0xff754E46),
                               keyboardType: TextInputType.streetAddress,
@@ -483,15 +347,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         final newUser = await _auth.createUserWithEmailAndPassword(
                             email: email, password: password);
                         UserVolunteerMngr.addUser(email, contactno, orgname, address);
-
-
-    //     .then(
-    // (value) async {
-    // var userUpdateInfo = new UserUpdateInfo(); //create user update object
-    // userUpdateInfo.address = address;
-    // await value.user.updateProfile(userUpdateInfo); //update to firebase
-    // await value.user.reload();
-
                         if (newUser != null) {
                           Navigator.pushNamed(context, '/login');
                         }
@@ -565,7 +420,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
         ));
   }
 }
-
+/// show dialog box for error message
 showAlertDialog(BuildContext context, String e, String a) {
 
   // set up the button

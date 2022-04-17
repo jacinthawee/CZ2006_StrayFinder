@@ -3,12 +3,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:custom_info_window/custom_info_window.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import '../ui/map_ui.dart';
-import '../widgets/injury_info.dart';
+import '../ui/MapUI.dart';
+import '../widgets/InjuryInfoWidget.dart';
 
+///A page that shows a specific's cat location on Google Map
 class CatDetailScreen extends StatelessWidget {
+
+  ///A controller to control an info window to show the description of the cat
   final CustomInfoWindowController _controller = CustomInfoWindowController();
 
+  ///A method to create marker of the cat
   Set<Marker> _createMarkers(GeoPoint loc, Map<String, dynamic> cat, Uint8List cat_marker){
     Set<Marker> marker = {};
     LatLng pos = LatLng(loc.latitude, loc.longitude);
@@ -29,6 +33,8 @@ class CatDetailScreen extends StatelessWidget {
   }
 
   @override
+
+  ///A method to build the page
   Widget build(BuildContext context) {
     final routeArgs = ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     GeoPoint pos = routeArgs['lastSeen'];
