@@ -3,9 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:custom_info_window/custom_info_window.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import '../ui/map_ui.dart';
-import '../widgets/cat_legend.dart';
-import '../widgets/cat_info.dart';
+import '../ui/MapUI.dart';
+import '../widgets/CatInfoWidget.dart';
+import '../widgets/MapLegendWidget.dart';
 import 'dart:async';
 
 /// A screen to show all cats on Google Maps
@@ -16,9 +16,13 @@ class CatMapScreen extends StatefulWidget {
   State<CatMapScreen> createState() => _CatMapScreenState();
 }
 
+/// State of the page
 class _CatMapScreenState extends State<CatMapScreen> {
+  ///A controller to control the info window that shows the description of the cat when a marker is pressed
   final CustomInfoWindowController _controller = CustomInfoWindowController();
+  ///An attribute to indicate an uninjured cat's marker on a map
   late Future<Uint8List> _normalCatMarker;
+///An attribute to indicate an injured cat's marker on a map
   late Future<Uint8List> _injuredCatMarker;
 
   @override
@@ -33,6 +37,7 @@ class _CatMapScreenState extends State<CatMapScreen> {
     _controller.dispose();
   }
 
+///A method to create markers for the cats on a map
   Set<Marker> _createMarkers(List<dynamic> cats, List<Uint8List> catMarker){
     Set<Marker> marker = {};
     marker.addAll(cats.map((cat) {
@@ -52,6 +57,8 @@ class _CatMapScreenState extends State<CatMapScreen> {
     return marker;
   }
   @override
+
+  ///A method to build the page
   Widget build(BuildContext context) {
     late List<Uint8List> catMarker;
     late List<Map<String, dynamic>> cats;

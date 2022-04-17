@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../ui/ReportUI.dart';
 
-
+///A page that prompts the user to name the cat found
 class NameCatFoundPage extends StatefulWidget {
   const NameCatFoundPage({Key? key}) : super(key: key);
 
@@ -9,9 +9,13 @@ class NameCatFoundPage extends StatefulWidget {
   State<NameCatFoundPage> createState() => _NameCatFoundPageState();
 }
 
+///State of the page
 class _NameCatFoundPageState extends State<NameCatFoundPage> {
+  ///Controller that controls the textfield of the name
   final myController = TextEditingController();
+  ///Attribute that indicates the name of the cat
   late String newName = '';
+  ///Attribute that indicates if the confirm button is enabled or disabled
   bool submit = false;
   void initState() {
     super.initState();
@@ -26,6 +30,8 @@ class _NameCatFoundPageState extends State<NameCatFoundPage> {
       });
     });}
   @override
+
+  ///A method to build the page
   Widget build(BuildContext context) {
     final routeArgs = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
 

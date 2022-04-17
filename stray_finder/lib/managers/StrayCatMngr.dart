@@ -1,8 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import './ImageMngr.dart';
+
+/// Represents the control class that has methods controlling StrayCat
 class StrayCatMngr {
-  var strayCatList = [];
+  
+  /// The CollectionReference for cats stored in the Firebase Cloud Firestore
   static CollectionReference cats = FirebaseFirestore.instance.collection('cats');
+
+  /// A method to generate a new ID for a new cat in the database
   static Future<int> setNewID() async {
   int id = 0;
   await FirebaseFirestore.instance
@@ -21,6 +26,7 @@ class StrayCatMngr {
     return id;
   }
 
+  /// A method to add a new stray cat to the Firebase Cloud Firestore consisting of details of the stray cat 
   static Future<void> addCat(int id, String name, String breed, bool statusInjury,
       GeoPoint lastSeen, String profileImgURL) async {
     return await cats
@@ -37,6 +43,7 @@ class StrayCatMngr {
         .catchError((error) => print("Failed to add cat: $error"));
   }
 
+  /// A get method to return information about all existing stray cats stored in the Firebase Cloud Firestore
   static Future<List<Map<String, dynamic>>> getAllCatInfo() async {
     List<Map<String, dynamic>> items = [];
     await FirebaseFirestore.instance.collection('cats').get().then((value) {
@@ -47,6 +54,7 @@ class StrayCatMngr {
     return items;
   }
 
+  /// A get method to return information about a specific stray cat via its ID
   static Future<Map<String, dynamic>> getCatInfo(int id) async {
     Map<String, dynamic> cat = {};
     await FirebaseFirestore.instance
@@ -66,6 +74,7 @@ class StrayCatMngr {
     return cat;
   }
 
+  /// A get method to return all exisitng stray cats stored in the Firebase Cloud Firestore by a specific breed
   static Future<List<Map<String, dynamic>>> getAllCatsByBreed(String breed) async {
     List<Map<String, dynamic>> cats = [];
     await FirebaseFirestore.instance
@@ -80,6 +89,7 @@ class StrayCatMngr {
     return cats;
   }
 
+  /// A get method to return information about the injury of a specific stray cat 
   static Future<Map<String, dynamic>> getInjuryInfo(int id) async {
     Map<String, dynamic> injury = {};
     await FirebaseFirestore.instance
@@ -100,9 +110,9 @@ class StrayCatMngr {
     return injury;
   }
 
+  /// A get method to return all injured stray cats
   static Future<List<Map<String, dynamic>>> getAllInjuredCats() async {
-    List<Map<String, dynamic>> injuredCats =
-        []; // holds all injured cats to be returned
+    List<Map<String, dynamic>> injuredCats = []; // holds all injured cats to be returned
     List injuredCatID = []; // holds all the cat id of injured cats
    await  FirebaseFirestore.instance.collection('injuries').get().then((value) {
       value.docs.forEach((element) {
@@ -123,6 +133,7 @@ class StrayCatMngr {
     return injuredCats;
   }
 
+  /// A method to update the last seen location of an existing stray cat stored in the Firebase Cloud Firestore
   static Future<void> updateLocation(int id, GeoPoint newLoc) async {
     await cats
         .doc(id.toString())
@@ -131,6 +142,7 @@ class StrayCatMngr {
         .catchError((error) => print("Failed to update location: $error"));
   }
 
+  /// A method to update the profile photo of an existing stray cat stored in the Firebase Cloud Firestore
   Future<void> updatePhoto(int id, String newURL) async {
     String oldURL = '';
     await FirebaseFirestore.instance
@@ -150,6 +162,7 @@ class StrayCatMngr {
         .catchError((error) => print("Failed to update cat photo: $error"));
   }
 
+  /// A method to update the injury status of an existing stray cat stored in the Firebase Cloud Firestore
   static Future<void> updateStatus(int id, bool newStatus) async {
     await cats
         .doc(id.toString())
@@ -158,6 +171,7 @@ class StrayCatMngr {
         .catchError((error) => print("Failed to update injury status: $error"));
   }
 
+  /// A get method to return the image URL of a stray cat
   static Future<String> getImgURL(int id) async{
     String img = '';
     final i = await FirebaseFirestore.instance
@@ -171,10 +185,5 @@ class StrayCatMngr {
     });
     return img;
   }
-
-// getAllCatLocation() {}
-// getInjuredCatID() {}
-// getSpecificCatLocation() {}
-// manageInjury() {}
 
 }

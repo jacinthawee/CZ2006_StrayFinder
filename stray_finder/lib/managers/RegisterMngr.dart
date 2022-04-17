@@ -1,6 +1,10 @@
 
-import '../screens/auth-status-enum.dart';
+import '../screens/AuthResultStatus.dart';
+
+/// Represents the control class that has methods controlling Registration
 class RegisterMngr {
+  
+  /// A method to handle exception and return error messages
   static handleException(e) {
     print(e.code);
     var status;
@@ -14,12 +18,6 @@ class RegisterMngr {
       case "invalid-email":
         status = AuthResultStatus.invalidEmail;
         break;
-      // case "ERROR_WRONG_PASSWORD":
-      //   status = AuthResultStatus.wrongPassword;
-      //   break;
-      // case "ERROR_USER_NOT_FOUND":
-      //   status = AuthResultStatus.userNotFound;
-      //   break;
       case "ERROR_USER_DISABLED":
         status = AuthResultStatus.userDisabled;
         break;
@@ -35,9 +33,7 @@ class RegisterMngr {
     return status;
   }
 
-  ///
-  /// Accepts AuthExceptionHandler.errorType
-  ///
+  /// A method to generate an exception message in the event of an error committed by the user
   static generateExceptionMessage(exceptionCode) {
     String errorMessage;
     switch (exceptionCode) {

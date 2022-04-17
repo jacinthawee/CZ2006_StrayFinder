@@ -9,6 +9,7 @@ import 'package:geolocator/geolocator.dart';
 
 /// Represent the boundary class that has user interface methods relating to Google Maps
 class MapUI {
+  
   /// A method to launch Google Map to navigate to corresponding destination
   static Future<void> openMap(String dest) async {
     dest = dest.replaceAll(" ", "+");

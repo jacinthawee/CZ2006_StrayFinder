@@ -1,69 +1,40 @@
 
 import 'package:flutter/material.dart';
-import '../widgets/togglebutton.dart';
+import '../widgets/IconToggleButtonWidget.dart';
 import '../ui/ReportUI.dart';
 import '../managers/StrayCatMngr.dart';
 
+
+///A page that shows all pictures of cats with the same breed as the cat reported and prompts the user to select 0 or 1 image of the cat to match the newly found cat with those shown
 class IsThisTheCatPage extends StatefulWidget {
   @override
   _MyAppState createState() => _MyAppState();
 }
 
+///State of the page
 class _MyAppState extends State<IsThisTheCatPage> {
 
+  ///An attribute that indicates if a cat has been selected or not
   bool finalSelected = false;
+  ///An attribute that indicates the number of the pictures shown
   int length = 0;
+  ///An attribute that counts the number of pictures the user selects
   int count = 0;
+
+  ///An attribute that indicates the id of the newly found cat
   int id = -1;
+
+  ///An attribute that indicates the name of the newly found cat
   String catName = "";
 
   @override
+
+  ///A method to build the page
   Widget build(BuildContext context) {
-
-
-
-//     for(var i = 0 ; i <= length; i++ )
-//     {
-//
-//       if (listwidget[i].isSelected == true)
-//       {
-//
-//         print("hello");
-//
-//         for(var j = i+1; j<=length; j++)
-//         {
-//           setState(() {
-//             listwidget[j].isDisabled = true;
-//           });
-//         }
-//         for(var a = 0; a<i; a++)
-//         {
-// setState(() {
-//   listwidget[a].isDisabled = true;
-// });
-//
-//
-//
-//
-//         }}};
-
-
-
-
-
 
     final routeArgs = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
     final image = routeArgs['image'];
     final breed = routeArgs['breed'];
-    // List<Map<String, dynamic>> cats = StrayCatMngr().getAllCatsByBreed(breed) as List<Map<String, dynamic>>;
-    // List<IconToggleButton> listwidget = [];
-    //
-    //
-    // for(var i in cats)
-    // {
-    //   int id = i['cat_id'];
-    //   String name = i['cat_name'];
-    //   listwidget.add(IconToggleButton(id, name));}
     return FutureBuilder(
       future: StrayCatMngr.getAllCatsByBreed(breed),
         builder: (BuildContext context, AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
@@ -81,13 +52,6 @@ class _MyAppState extends State<IsThisTheCatPage> {
             length = listwidget.length;
             return Scaffold(
               appBar: AppBar(
-                // actions: [
-                //   IconButton(
-                //     onPressed: () {
-                //       ReportUI.goUserTabs(context);
-                //     },
-                //     icon: Icon(Icons.home),
-                //   ),
                 // ],
                 title: Text(
                   "Report",
@@ -240,124 +204,13 @@ class _MyAppState extends State<IsThisTheCatPage> {
             );
           }
         });
-
-    // return Scaffold(
-    //     appBar: AppBar(
-    //       actions: [
-    //         IconButton(
-    //           onPressed: () {
-    //             ReportUI.goUserTabs(context);
-    //           },
-    //           icon: Icon(Icons.home),
-    //         ),
-    //       ],
-    //       title: Text(
-    //         "Report",
-    //         style: TextStyle(color: Theme.of(context).colorScheme.secondary),
-    //       ),
-    //
-    //     ),
-    //     body:
-    //     SingleChildScrollView(
-    //               child: Column(
-    //                 children: [
-    //                   Padding(
-    //                     padding: EdgeInsets.fromLTRB(0, 50, 0, 20),
-    //                     child: Text("Is this the cat?", style: TextStyle(fontFamily : "Poppins", fontSize: 25 )),
-    //                   ),
-    //                   Padding(
-    //                     padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
-    //                     child: Text("Please select a picture if you think the cat you found is in these pictures. Don't select any otherwise. ", style: TextStyle(fontFamily : "Poppins", fontSize: 14), textAlign: TextAlign.center),
-    //                   ),
-    //                   Padding(
-    //                     padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
-    //                     child: Text("Only select 0 or 1 picture.", style: TextStyle(fontFamily : "Poppins", fontSize: 14, fontWeight: FontWeight.bold), textAlign: TextAlign.center,),
-    //                   ),
-    //     Container(
-    // height: 450,
-    // child: GridView.count(
-    // crossAxisCount: 2,
-    // children:
-    //
-    // listwidget
-    //
-    //
-    //
-    //         )),
-    //
-    //                   Padding(
-    //                       padding: EdgeInsets.fromLTRB(0, 40, 0, 50),
-    //                       child:
-    //                       TextButton(
-    //                         onPressed: () {
-    //                           setState(() {
-    //                             for(var i = 0 ; i <= length; i++ )
-    //                             {if (listwidget[i].isSelected == true)
-    //                             {
-    //                               finalSelected = true;
-    //                               count++;
-    //
-    //                             }
-    //
-    //
-    //                           }});
-    //
-    //                           if (finalSelected == true && count == 1) // cat exists in db
-    //                           {
-    //                             for(var i = 0 ; i <= length; i++ )
-    //                             {if (listwidget[i].isSelected == true)
-    //                             {id= listwidget[i].catID;
-    //                              catName = listwidget[i].name;
-    //                             }
-    //
-    //
-    //                             }
-    //                             bool is_existing = true;
-    //                             StrayCatMngr().updatePhoto(id, image);
-    //
-    //                             ReportUI.goAskIfInjured(context, id, catName, breed, image, is_existing);
-    //                             setState(() {
-    //                               finalSelected = false;
-    //                               count = 0;
-    //                             });
-    //                           }
-    //
-    //                           else if (finalSelected == false) // new cat
-    //                               // Images.addImage(10, image);
-    //                               {
-    //                                 int newCatId = StrayCatMngr().setNewID() as int;
-    //                                 ReportUI.goNameCatFound(context, newCatId, breed, image);}
-    //                           else if (finalSelected == true && count > 1)
-    //                             {finalSelected = false;
-    //                             count = 0;
-    //                               showAlertDialog(context);
-    //                             }
-    //                         },
-    //                         style: ButtonStyle(
-    //                             foregroundColor:
-    //                             MaterialStateProperty.all<Color>(Colors.white),
-    //                             backgroundColor:
-    //                             MaterialStateProperty.all<Color>(Color(0xff754E46)),
-    //                             padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
-    //                                 EdgeInsets.fromLTRB(55, 10, 55, 10)),
-    //                             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-    //                                 RoundedRectangleBorder(
-    //                                     borderRadius: BorderRadius.circular(50.0)))),
-    //                         child: Text('Confirm',
-    //                             style: TextStyle(fontSize: 20, fontFamily: "Poppins")),
-    //                       ),
-    //                     ),
-    //                 ],
-    //               ),
-    //             ),
-    //
-    //   );
   }
 
 
 
 }
 
+///A method to show alert dialog when there is an error
 showAlertDialog(BuildContext context) {
 
   // set up the button

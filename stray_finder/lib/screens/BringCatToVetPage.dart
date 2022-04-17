@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import '../ui/ReportUI.dart';
 import '../managers/InjuryMngr.dart';
 
+/// A page that prompts the user to specify if they want to bring the injured cat they found to the vet
 class BringCatToVetPage extends StatelessWidget{
 
   @override
+  ///A method to build the page
   Widget build(BuildContext context){
     final routeArgs = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
     final id = routeArgs['id'];

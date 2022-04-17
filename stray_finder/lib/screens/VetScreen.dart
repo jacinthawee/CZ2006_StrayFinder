@@ -4,23 +4,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:custom_info_window/custom_info_window.dart';
-import '../widgets/vet_info.dart';
-import '../managers/vet_manager.dart';
-import '../ui/map_ui.dart';
+import '../widgets/VetInfoWidget.dart';
+import '../managers/VetMngr.dart';
+import '../ui/MapUI.dart';
 
-/// A class that render VetScreen
+/// A class that show all vets on Google Maps
 class VetScreen extends StatefulWidget {
   const VetScreen({Key? key}) : super(key: key);
 
   @override
   _VetScreenState createState() => _VetScreenState();
 }
-
+/// state of the page
 class _VetScreenState extends State<VetScreen> {
+  /// control the open/close state of the floating button
   ValueNotifier<bool> _isDialOpen = ValueNotifier(false);
+  /// a controller to show info window when clicking on the marker
   final CustomInfoWindowController _controller = CustomInfoWindowController();
+  /// indicating whether the query of vets data is finished
   late Future<bool> _hasVetData;
+  /// indicating whether the ver marker is loaded
   late Future<Uint8List> _vetMarker;
+  /// contains marker of all vets
   Set<Marker> _markers = {};
 
   @override
@@ -36,16 +41,8 @@ class _VetScreenState extends State<VetScreen> {
     super.dispose();
   }
 
+  /// A method to create markers for all vets
   Set<Marker> _createMarkers(List<dynamic> vets, Uint8List vetMarker) {
-    // Set<Marker> _createMarkers(){
-    // List<Map<String, dynamic>> vets = [{'_id':1, 'lat':1.3521, 'long':103.8198, 'address':'1 Turf Club Avenue Singapore Racecourse',
-    // 'name':'Singapore Turf Club Equine Hospital',
-    // 'postal_code': '637659',
-    // 'tel_office_1':'68791000', 'tel_office_2': 'na', 'type': 'Clinic', },
-    // {'_id':2, 'lat':1.3515, 'long':103.6805, 'address':'1 Turf Club Avenue Singapore Racecourse',
-    // 'name':'Singapore Turf Club Equine Hospital',
-    // 'postal_code': '637659',
-    // 'tel_office_1':'68791000', 'tel_office_2': 'na', 'type': 'Clinic', }];
     Set<Marker> marker = {};
     marker.addAll(vets.map((vet) {
       LatLng pos = LatLng(vet['lat'], vet['long']);
@@ -63,6 +60,7 @@ class _VetScreenState extends State<VetScreen> {
     return marker;
   }
 
+  /// build the page
   @override
   Widget build(BuildContext context) {
     late Uint8List vetMarker;

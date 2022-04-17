@@ -6,18 +6,24 @@ import 'dart:io';
 import '../ui/ReportUI.dart';
 import '../managers/ImageMngr.dart';
 
+/// A page where the user will take picture or upload picture of the cat they want to report
 class UploadPicturePage extends StatefulWidget {
   @override
   _UploadPicturePageState createState() => _UploadPicturePageState();
 }
 
+/// state of the page
 class _UploadPicturePageState extends State<UploadPicturePage> {
+  /// show spinner when the page is loading
   bool showSpinner = false;
-
+  /// A `File` that represent the photo taken from camera when user click 'take photo'
   var _image;
+  /// A `File` that represent the uploaded image when user select from their gallery
   var _image2;
-
+  /// allow users to select picture to upload from gallery
   final picker = ImagePicker();
+
+  /// A method to generate `File` from the photo taken by user
   Future<void> chooseImage() async {
     final image = await picker.pickImage(source: ImageSource.camera);
 
@@ -32,7 +38,7 @@ class _UploadPicturePageState extends State<UploadPicturePage> {
       }
     });
   }
-
+  /// A method to generate `File` from the photo selected from gallery by user
   Future<void> chooseImageGallery() async {
     final image2 = await picker.pickImage(source: ImageSource.gallery);
 
@@ -44,7 +50,7 @@ class _UploadPicturePageState extends State<UploadPicturePage> {
       }
     });
   }
-
+  /// build the page
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -231,6 +237,7 @@ class _UploadPicturePageState extends State<UploadPicturePage> {
   }
 }
 
+/// show dialog box for error message
 showAlertDialog(BuildContext context) {
   // set up the button
   Widget okButton = TextButton(
