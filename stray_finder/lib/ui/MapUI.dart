@@ -34,7 +34,7 @@ class MapUI {
   static Future<GeoPoint> geoCode(String postal) async{
     GeoData data = await Geocoder2.getDataFromAddress(
       address: "Singapore+$postal",
-      googleMapApiKey: "AIzaSyDEgZFylVwu14etIAO19y2XDVMoIVvQTkw");
+      googleMapApiKey: "apiKey");
     return GeoPoint(data.latitude, data.longitude);
   }
 
